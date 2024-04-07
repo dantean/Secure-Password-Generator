@@ -1,9 +1,16 @@
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword(){
-    var passwordSize=prompt("Enter password length from 8-128")
+    var passwordSize=prompt("Choose a password length from 8-128")
     console.log(passwordSize)
 
+    if(passwordSize>= 8 && passwordSize<=128){
+        var confirmLowerCase=confirm("Do you want lowercase included?");
+        console.log(confirmLowerCase);
+    }
+else{
+    alert("Invalid Entry, Password length must be between 8 and 128");
+}
 }
 
 function writePassword() {
