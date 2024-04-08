@@ -27,13 +27,31 @@ function generatePassword(){
         var confirmNumeric=confirm("Do you want numbers included?");
         console.log(confirmNumeric);
         var confirmSpecialCharacters=confirm("Do you want special characters included?");
-        console.log(ConfirmSpecialCharacters);
+        console.log(confirmSpecialCharacters);
+
+
+// v-- logic for generating password characters based on above criteria --v 
 
         if(confirmLowerCase){
             var randomIndex= Math.floor( Math.random() * lowercase.length )
         }
-    }
-else{
+
+        if(confirmUpperCase) {
+            allowedCharacters += uppercase;
+        }
+
+        if(confirmNumeric) {
+            allowedCharacters += number;
+        }
+
+        if (confirmSpecialCharacters) {
+            allowedCharacters += specialCharacters;
+        }
+        for (var i = 0; i < passwordSize; i++) {
+            var randomIndex = Math.floor(Math.random() * allowedCharacters.length);
+            savedPassword += allowedCharacters[randomIndex];
+        }
+    } else{
     alert("Invalid Entry, Password length must be between 8 and 128");
 }
 
