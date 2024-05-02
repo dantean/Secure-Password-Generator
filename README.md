@@ -37,12 +37,12 @@ Online link: https://imgur.com/a/wS8D1F6
 
 ## Deployment
 
-Github: `https://github.com/dantean/Secure-Password-Generator`
-Live LinkL `https://dantean.github.io/Secure-Password-Generator/`
+- Github: `https://github.com/dantean/Secure-Password-Generator`
+- Live Link: `https://dantean.github.io/Secure-Password-Generator/`
 
 ## Credits
-Big thanks to instructor Phil Loy for walking me through this initially. 
-Thanks to ChatGPT for telling me how to write the `copy to clipboard` and `display criteria` functions, as well as helping me catch a couple syntax errors.
+- Big thanks to instructor Phil Loy for walking me through this initially. 
+- Thanks to ChatGPT for telling me how to write the `copy to clipboard` and `display criteria` functions, as well as helping me catch a couple syntax errors.
 
 
 ## License
