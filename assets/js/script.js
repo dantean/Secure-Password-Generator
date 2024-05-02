@@ -1,8 +1,8 @@
-var generateBtn = document.querySelector("#generate");
-var lowercase="abcdefghijklmnopqrstuvwxyz";
-var uppercase=lowercase.toUpperCase();
-var number="0123456789";
-var specialCharacters="!@#$%^&*-_=+";
+// Define character sets and the criteria
+var lowercase = "abcdefghijklmnopqrstuvwxyz";
+var uppercase = lowercase.toUpperCase();
+var number = "0123456789";
+var specialCharacters = "!@#$%^&*-_=+";
 var criteria = {
     size: 0,
     hasLowerCase: false,
@@ -11,106 +11,80 @@ var criteria = {
     hasSpecialCharacters: false
 };
 
-
-
-//  Defined variables for defining the size of the password 
-function generatePassword(){
+// Generate password based on selected criteria
+function generatePassword() {
     var allowedCharacters = "";
-    var savedPassword="";
-    var passwordSize=prompt("Choose a password length from 8-128");
-    console.log(passwordSize); 
+    var savedPassword = "";
+    criteria.size = prompt("Choose a password length from 8-128");
 
-//  prompt for user to answer a series of questions to determine what the password will include. Returns an error if user inputs invalid criteria. 
+    if (criteria.size >= 8 && criteria.size <= 128) {
+        criteria.hasLowerCase = confirm("Do you want lowercase letters included?");
+        criteria.hasUpperCase = confirm("Do you want uppercase letters included?");
+        criteria.hasNumeric = confirm("Do you want numbers included?");
+        criteria.hasSpecialCharacters = confirm("Do you want special characters included?");
 
-
-    if(passwordSize>= 8 && passwordSize<=128){
-        var confirmLowerCase=confirm("Do you want lowercase letterrs included?");
-        console.log(confirmLowerCase);
-        var confirmUpperCase=confirm("Do you want upper case letters included?");
-        console.log(confirmUpperCase);
-        var confirmNumeric=confirm("Do you want numbers included?");
-        console.log(confirmNumeric);
-        var confirmSpecialCharacters=confirm("Do you want special characters included?");
-        console.log(confirmSpecialCharacters);
-
-
-//  logic for generating password characters based on above criteria  
-
-        if(confirmLowerCase){
-            var randomIndex= Math.floor( Math.random() * lowercase.length )
+        if (criteria.hasLowerCase) {
+            allowedCharacters += lowercase;
         }
-
-        if(confirmUpperCase) {
+        if (criteria.hasUpperCase) {
             allowedCharacters += uppercase;
         }
-
-        if(confirmNumeric) {
+        if (criteria.hasNumeric) {
             allowedCharacters += number;
         }
-
-        if (confirmSpecialCharacters) {
+        if (criteria.hasSpecialCharacters) {
             allowedCharacters += specialCharacters;
         }
-        for (var i = 0; i < passwordSize; i++) {
+
+        for (var i = 0; i < criteria.size; i++) {
             var randomIndex = Math.floor(Math.random() * allowedCharacters.length);
             savedPassword += allowedCharacters[randomIndex];
         }
-    } else{
-    alert("Invalid Entry, Password length must be between 8 and 128");
+    } else {
+        alert("Invalid Entry, Password length must be between 8 and 128");
+    }
+
+    return savedPassword;
 }
 
-
-
-return savedPassword;
-
-}
-
-
-//  generates password based on criteria defined above 
+// Function to display password and criteria
 function writePassword() {
-    var password = generatePassword(); 
+    var password = generatePassword();
     var passwordText = document.querySelector("#password");
     passwordText.value = password;
-}
-generateBtn.addEventListener("click",writePassword);
 
-// Function to copy password to clipboard
+    var criteriaResults = document.querySelector("#criteria-result");
+    criteriaResults.innerHTML = `
+        <p>Password Length: ${criteria.size}</p>
+        <p>Lowercase Letters: ${criteria.hasLowerCase ? "YES" : "NO"}</p>
+        <p>Uppercase Letters: ${criteria.hasUpperCase ? "YES" : "NO"}</p>
+        <p>Numbers: ${criteria.hasNumeric ? "YES" : "NO"}</p>
+        <p>Special Characters: ${criteria.hasSpecialCharacters ? "YES" : "NO"}</p>
+    `;
+}
+
+// Function to copy password to clipboard using Clipboard API
 function copyToClipboard() {
     var passwordText = document.querySelector("#password");
-    if (navigator.clipboard) {  // Checks if Clipboard API is available
-      navigator.clipboard.writeText(passwordText.value)
-        .then(() => {
-          alert("Password copied to clipboard!");
-        })
-        .catch(err => {
-          console.error("Failed to copy password: ", err);
-          alert("Failed to copy password.");
-        });
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(passwordText.value)
+            .then(() => {
+                alert("Password copied to clipboard!");
+            })
+            .catch(err => {
+                console.error("Failed to copy password: ", err);
+                alert("Failed to copy password.");
+            });
     } else {
-      alert("Clipboard API not available.");
+        alert("Clipboard API not available.");
     }
-  }
-  
-  // Update the writePassword function to display criteria
-  function writePassword() {
-      var password = generatePassword(); 
-      var passwordText = document.querySelector("#password");
-      passwordText.value = password;
-  
-      // Display criteria results
-      var criteriaResults = document.querySelector("#criteria-result");
-      criteriaResults.innerHTML = `
-        <p>Lowercase Letters: ${confirmLowerCase ? "YES" : "NO"}</p>
-        <p>Uppercase Letters: ${confirmUpperCase ? "YES" : "NO"}</p>
-        <p>Numbers: ${confirmNumeric ? "YES" : "NO"}</p>
-        <p>Special Characters: ${confirmSpecialCharacters ? "YES" : "NO"}</p>
-      `;
-  }
-  
-  // Adding event listener for the new copy button
-  var copyBtn = document.querySelector("#copy");
-  copyBtn.addEventListener("click", copyToClipboard);
-  
-  // Existing event listener
-  generateBtn.addEventListener("click",writePassword);
-  
+}
+
+// Event listeners for buttons
+var generateBtn = document.querySelector("#generate");
+generateBtn.addEventListener("click", writePassword);
+
+var copyBtn = document.querySelector("#copy");
+copyBtn.addEventListener("click", copyToClipboard);
+
+
