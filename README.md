@@ -4,6 +4,8 @@
 
 A simple Javascript application that asks the user a series of questions, then generates a secure password based on their responses. 
 
+I made some newbie mistakes in my original attempt at this and needed to come back and make some revisions. After that, just for fun, I used ChatGPT to help me write additional code to add a `copy to clipboard` button, as well a section below the main box that displays which criteria the user selected. 
+
 ## Acceptance Criteria
 
 ```
@@ -26,16 +28,18 @@ WHEN the password is generated
 
 ## How To Use
 
-Launch index.html, click the button, answer the questions, copy/paste :D :D :D 
+Launch index.html, click `generate password`, answer the questions, use the `copy to clipboard` button to copy to your clipboard :D :D :D 
 
 ## Screenshots
 
-Included screenshot: /assets/images/screenshot.png
+Included screenshots: `./assets/images/`
+Online link: https://imgur.com/a/wS8D1F6
 
 ## Credits
-Big thanks to instructor Phil Loy, as always
+Big thanks to instructor Phil Loy for walking me through this initially. 
+Thanks to ChatGPT for telling me how to write the `copy to clipboard` and `display criteria` functions, as well as helping me catch a couple syntax errors.
+
 
 ## License
 
-MIT License
-
+MIT License - The License file is provided here : (./LICENSE)
