@@ -1,11 +1,15 @@
-//  generate button 
 var generateBtn = document.querySelector("#generate");
-
-//  define what lowercase letters, numbers, and special characters are 
 var lowercase="abcdefghijklmnopqrstuvwxyz";
 var uppercase=lowercase.toUpperCase();
 var number="0123456789";
 var specialCharacters="!@#$%^&*-_=+";
+var criteria = {
+    size: 0,
+    hasLowerCase: false,
+    hasUpperCase: false,
+    hasNumeric: false,
+    hasSpecialCharacters: false
+};
 
 
 
